@@ -4,10 +4,9 @@ require("dotenv").config();
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
-// const cookieParser = require('cookie-parser');
 const morgan = require("morgan");
 const cors = require("cors");
-const { executeLeaderboardUpdate } = require("./services/leaderboard.service"); // FIXME: Change import when refactored as service
+const { executeLeaderboardUpdate } = require("./services/leaderboard.service");
 
 const transactionRoutes = require("./routes/transaction.routes");
 const portfolioRoutes = require("./routes/portfolio.routes");
@@ -58,9 +57,6 @@ app.use(function (err, req, res, next) {
   res.render("error", { title: "Error" });
 });
 
-// Registering
-// FIXME: Refactor executeLeaderboardUpdate into services/leaderboard.service.js and then fix this import
 setInterval(executeLeaderboardUpdate, 3 * 60 * 1000);
-// setInterval(executeLeaderboardUpdate, 3 * 1000);
 
 module.exports = app;

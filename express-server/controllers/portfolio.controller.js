@@ -18,7 +18,6 @@ const getPortfolio = (req, res, next) => {
     .catch((err) => {
       console.log("Error in /getPortfolio");
       console.log(err.message);
-      // FIXME: What http status code to use here
       next(createError(500, err));
     });
 };
@@ -41,7 +40,6 @@ const getHistory = (req, res) => {
     .catch((err) => {
       res.status(500);
       console.log("CAUGHT AN ERROR IN GETTING TRANSACTION HISTORY");
-      // FIXME: What http status code to use here
       next(createError(500, err));
     });
 };

@@ -18,8 +18,6 @@ const getDetails = async (userId) => {
   }
 };
 
-// TODO MAYBE: Update details?
-
 /**
  * Service that returns an ordered list of a users
  * transaction history sorted by recent transactions
@@ -37,19 +35,12 @@ const getTransactionHistory = async (userId) => {
     coin: data.id,
     ...data.data(),
   }));
-  // FIXME: Isn't it already sorted by date?
+
   transactionHistory.sort(function (x, y) {
     return new Date(y.time) - new Date(x.time);
   });
   return transactionHistory;
 };
-
-// TODO: `portfolio` is a field on users of type `Map`.
-const getPortfolio = async (userId) => {};
-
-const updatePortfolio = async (userId) => {};
-
-const executeTransaction = async (userId) => {};
 
 module.exports = {
   getDetails,

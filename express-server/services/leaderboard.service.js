@@ -16,12 +16,10 @@ const getPortfolioLeaderboard = async (currency) => {
       .where("currency", "==", currency)
       .get();
   } catch (err) {
-    // FIXME: Bad error handling
     throw new Error(
       `couldn't fetch portfolio leaderboard for currency ${currency}`
     );
   }
-  // FIXME: Don't think this should throw?
   // Remove portfolios with no profit or loss and sort by profit loss descending
   portfolioLeaderboard = portfolioLeaderboard.docs
     .map((data) => ({ ...data.data() }))
@@ -43,7 +41,6 @@ const getGameLeaderboard = async () => {
       .where("score", ">", 0)
       .get();
   } catch (err) {
-    // FIXME: Bad error handling
     throw new Error("couldn't fetch game leaderboard");
   }
   //Order by each accounts scores
@@ -66,7 +63,6 @@ const updateUserGameScore = async (userId, newScore) => {
   try {
     currentUserStats = await currentUserStatsRef.get();
   } catch (err) {
-    // FIXME: Bad error handling
     throw new Error("couldn't fetch user's stats on leaderboard");
   }
 
@@ -79,7 +75,6 @@ const updateUserGameScore = async (userId, newScore) => {
   try {
     await currentUserStatsRef.update({ score: newScore });
   } catch (err) {
-    // FIXME: Bad error handling
     throw new Error("couldn't update user's highest game score on leaderboard");
   }
 };
@@ -95,7 +90,6 @@ const leaderboardUpdate = async (currency) => {
   try {
     allAccounts = await cryptoAccounts.where("currency", "==", currency).get();
   } catch (err) {
-    // FIXME: Bad error handling
     throw new Error(`couldnt fetch accounts with currency ${currency}`);
   }
 
@@ -108,7 +102,6 @@ const leaderboardUpdate = async (currency) => {
       //Get portfolio statistics i.e. profit loss amount
       portfolio = await portfolioCalc(account.id, currency.substring(0, 3));
     } catch (err) {
-      // FIXME: bad error handling
       throw new Error("couldn't calculate the portfolio");
     }
     const leaderboardDB = db.collection("crypto-leaderboard").doc(account.id);
@@ -118,7 +111,6 @@ const leaderboardUpdate = async (currency) => {
         PL: portfolio.balanceIncProfits - 100000,
       });
     } catch (err) {
-      // FIXME: bad error handling
       throw new Error("couldn't update the portfolio leaderboard");
     }
   });
@@ -131,7 +123,6 @@ const leaderboardUpdate = async (currency) => {
  */
 const executeLeaderboardUpdate = () => {
   console.log("Updating leaderboards...");
-  // FIXME: Shouldn't hardcode these strings here
   ["usd$", "cad$", "gbp£"].forEach((curr) => {
     leaderboardUpdate(curr).catch((err) => {
       console.log(err);

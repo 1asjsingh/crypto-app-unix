@@ -14,10 +14,8 @@ const portfolioCalc = async (userId, currency) => {
   let current_prices = await coingecko.getCurrentPrices(currency);
 
   let userDetails = await users.getDetails(userId);
-  // TODO: Catch error or just let it throw?
 
   let transactionHistory = await users.getTransactionHistory(userId);
-  // TODO: Catch error or just let it throw?
 
   let coins = [];
   let quantity = [];
@@ -26,8 +24,6 @@ const portfolioCalc = async (userId, currency) => {
 
   let docIndex = 0; //index counter for transactionHistory
   let indexRemove = []; //List of indexes to remove from transaction history (SELL ORDERS/Assets that have been completely sold)
-
-  // TODO: Check logic and decompose
 
   //FIFO: Sell the assets user acquired first
   transactionHistory.forEach((doc) => {

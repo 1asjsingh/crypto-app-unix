@@ -17,7 +17,6 @@ const buy = (req, res, next) => {
     .execute(userId, coin, quantity, currentPrice, costPrice, date, true)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      // FIXME: What http status code to use here
       console.log(err.message);
       next(createError(500, err));
     });
@@ -39,7 +38,6 @@ const sell = (req, res, next) => {
     .execute(userId, coin, quantity, currentPrice, sellPrice, date, false)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      // FIXME: What http status code to use here
       next(createError(500, err));
     });
 };

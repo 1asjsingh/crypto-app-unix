@@ -22,7 +22,6 @@ const execute = async (
 ) => {
   const user = await users.getDetails(userId);
 
-  // TODO: Create another function that generates a unique transaction ID (use UUID?)
   const transactionHistory = await users.getTransactionHistory(userId);
   const transactionId = 1 + transactionHistory.length;
 
