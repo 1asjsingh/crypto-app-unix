@@ -1,0 +1,19 @@
+.info-top {
+    text-align: center;
+}
+
+.coin-title {
+    font-size: 5vw;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.coin-chart {
+    background-color: #2f2f2f;
+    padding: 20px;
+}
+
+p em {
+    color: #a9a9a9;
+    font-style: normal;
+}

@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap);
+* {
+  font-family: Montserrat;
+}
+
+.App {
+  color: white;
+}
+
+Button{
+  border-radius: 14px !important;
+}
+
+input {
+  margin-bottom: 15px !important;
+  border: none !important;
+  border-radius: 10px !important;
+  background-color: #d3d3d3 !important;
+}
+
+.round-box {
+  background-color: #2f2f2f;
+  border-radius: 30px;
+  padding: 25px !important  ;
+  margin: 20px !important;
+}
+
+Table {
+  --bs-table-striped-bg: #424242 !important;
+  --bs-table-striped-color: white !important;
+}
+
+tr > td {border: none;}
