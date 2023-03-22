@@ -101,5 +101,6 @@
     "casper-network",
     "compound-ether",
     "convex-finance"
-  ]
+  ],
+  "predictedCoins": ["bitcoin", "ethereum", "dogecoin", "tether", "ripple"]
 }

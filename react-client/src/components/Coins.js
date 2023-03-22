@@ -13,7 +13,9 @@ import {
   BsFillGrid3X3GapFill,
 } from "react-icons/bs";
 import { BiSortZA } from "react-icons/bi";
+import { IoMdStar } from "react-icons/io";
 import numeral from "numeral";
+import { predictedCoins } from "../config";
 
 function Coins() {
   const [coins, setCoins] = useState([]);
@@ -42,13 +44,11 @@ function Coins() {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await client.get(
-          `coingecko/currentprices/${getCurr()}`
-        );
+        const res = await client.get(`coingecko/currentprices/${getCurr()}`);
         setCoins(res.data);
       } catch (e) {
         console.error(e);
-        errorHandler(e)
+        errorHandler(e);
       }
     }
     getData();
@@ -127,6 +127,9 @@ function Coins() {
     <Container>
       <Container>
         <h1>Coins</h1>
+        <p>
+          <IoMdStar /> Prediction Support
+        </p>
       </Container>
 
       <Row>
@@ -260,7 +263,10 @@ function Coins() {
                           alt="currency icon"
                         />
                       </td>
-                      <td>{coin.name}</td>
+                      <td>
+                        {predictedCoins.includes(coin.id) && <IoMdStar />}{" "}
+                        {coin.name}
+                      </td>
                       <td>{coin.symbol.toUpperCase()}</td>
                       <td>
                         {getSymbol()}
@@ -348,8 +354,12 @@ function Coins() {
                     src={coin.image}
                     alt="currency icon"
                   />
-                  <h5 className="card-title">{coin.name}</h5>
+                  <h5 className="card-title">
+                    {predictedCoins.includes(coin.id) && <IoMdStar />}{" "}
+                    {coin.name}
+                  </h5>
                   <h6 className="card-subtitle mb-2 text-muted">
+                    {}
                     {coin.symbol.toUpperCase()}
                   </h6>
                   <p className="card-text price">

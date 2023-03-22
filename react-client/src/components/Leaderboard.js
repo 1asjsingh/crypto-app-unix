@@ -23,8 +23,6 @@ function Leaderboard() {
         );
         res = res.data;
 
-        console.log(res);
-
         setLeaderboard(res);
 
         setLoading(false);

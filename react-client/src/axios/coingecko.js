@@ -11,6 +11,8 @@ export const errorHandler = (e) => {
     if (e.response.status === 429) {
       alertMsg = "CoinGecko request limit reached. Try aain in a few minutes.";
     }
+  } else if (e.code === "ERR_NETWORK") {
+    alertMsg = "CoinGecko request limit reached. Try aain in a few minutes.";
   }
   alert(alertMsg);
 };

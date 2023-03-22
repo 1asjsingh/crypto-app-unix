@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as coingecko from "../axios/coingecko";
 import * as express from "../axios/express";
 import * as flask from "../axios/flask";
-import { supportedCoins } from "../config"
+import { supportedCoins, predictedCoins } from "../config";
 import Loading from "./Loading";
 import { getDetails } from "./requests.js";
 import Chart from "./Chart.js";
@@ -31,12 +31,8 @@ function CoinDetails() {
   const navigate = useNavigate();
 
   if (!supportedCoins.includes(coin)) {
-    navigate("/notfound")
+    navigate("/notfound");
   }
-
-  const predictedCoins = useCallback(() => {
-    return ["bitcoin", "ethereum", "dogecoin", "tether", "ripple"];
-  }, []);
 
   const numeralise = (num) => {
     const converted = numeral(num).format("0.0a");
@@ -64,7 +60,7 @@ function CoinDetails() {
         const request = await coingecko.client.get(getDetails(coin));
         setDetails(request.data);
 
-        if (predictedCoins().includes(coin)) {
+        if (predictedCoins.includes(coin)) {
           getPrediction(request.data.symbol.toUpperCase());
         }
 
@@ -87,7 +83,7 @@ function CoinDetails() {
       }
     }
     getData();
-  }, [coin, navigate, predictedCoins]); //navigate ----------------------------------------------------
+  }, [coin, navigate]); //navigate ----------------------------------------------------
 
   function handleBuyQuantity(e) {
     const quant = Number(Number(e.target.value).toFixed(2));
@@ -356,7 +352,7 @@ function CoinDetails() {
           </Row>
         )}
 
-        {predictedCoins().includes(coin) && predictedVals.length > 0 && (
+        {predictedCoins.includes(coin) && predictedVals.length > 0 && (
           <Row className="coin-chart round-box">
             <h3>Prediction</h3>
             <p>Disclaimer: This is a prediction and not financial advice</p>

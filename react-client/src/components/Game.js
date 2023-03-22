@@ -51,6 +51,7 @@ function Game() {
       } catch (e) {
         console.log(e);
         coingecko.errorHandler(e);
+        return;
       }
 
       try {
@@ -64,11 +65,11 @@ function Game() {
         let scores = await express.client.get(`leaderboard/game`);
         scores = scores.data;
 
-        setHighScores(scores.slice(0, 10));
+        setHighScores(scores);
 
         setLoading(false);
       } catch (e) {
-        console.log(e)
+        console.log(e);
         express.errorHandler(e);
       }
     };
