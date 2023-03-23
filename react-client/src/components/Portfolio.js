@@ -123,7 +123,7 @@ function Portfolio() {
       let sell = await express.client.post(`transaction/sell`, reqBody);
       console.log(sell);
     } catch (e) {
-      //FIXME
+      express.errorHandler(e);
     }
 
     window.location.reload(false);

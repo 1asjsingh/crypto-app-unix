@@ -374,7 +374,6 @@ function Coins() {
                   >
                     More
                   </Button>
-                  {/*more-button----------------*/}
                 </div>
               </div>
             ))}

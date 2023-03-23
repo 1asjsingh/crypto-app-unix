@@ -54,7 +54,7 @@ function Chart({ currency, coin, prediction }) {
           return { x: unix, y: price };
         });
 
-        //Add most recent coinGecko price point data to start of predication dataset so the coingecko and prediction lines are connected
+        //Add most recent coinGecko price point data to start of prediction dataset so the coingecko and prediction lines are connected
         predArr.unshift({
           x: todayUnix,
           y: res[res.length - 1][1],

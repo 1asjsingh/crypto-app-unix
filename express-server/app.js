@@ -25,7 +25,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
 app.use(cors());
 
 // Sanity check
@@ -51,7 +50,7 @@ app.use(function (err, req, res, next) {
   // Only provide error during development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
-  // NOTE: If you don't render error, change status() -> sendStatus() to
+  // NOTE: If don't render error, change status() -> sendStatus() to
   //       terminate request-response cycle.
   res.status(err.status || 500);
   res.render("error", { title: "Error" });
