@@ -37,7 +37,7 @@ const getTransactionHistory = async (userId) => {
   }));
 
   transactionHistory.sort(function (x, y) {
-    return new Date(y.time) - new Date(x.time);
+    return new Date(x.time) - new Date(y.time);
   });
   return transactionHistory;
 };
