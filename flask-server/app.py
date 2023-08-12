@@ -24,7 +24,6 @@ app = Flask(__name__)
 CORS(app)
 
 models = dict()
-# TODO: Create these as environment variables
 config_path = 'etc/coin_vs_currency.json'
 models_dir = 'tf_models'
 
